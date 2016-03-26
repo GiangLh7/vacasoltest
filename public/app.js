@@ -8,7 +8,7 @@ angular.module('vacasol', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngLoading'])
 
         $routeProvider.when('/', {
             templateUrl: "views/signup.html",
-            controller: 'HomeCtrl'
+            controller: 'SignupCtrl'
         })
         .when('/login', {
             templateUrl: 'views/login.html',
