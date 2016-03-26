@@ -21,7 +21,8 @@ gulp.task('sass', function () {
 //concatenate and minify js files into one file
 gulp.task('compress', function() {
     gulp.src([
-        'public/javascripts/vendor/angular.min.js',
+        'public/javascripts/vendor/spin.js',
+        'public/javascripts/vendor/angular.js',
         'public/javascripts/vendor/*.js',
         'public/app.js',
         'public/javascripts/services/*.js',
@@ -29,7 +30,7 @@ gulp.task('compress', function() {
         'public/javascripts/directives/*.js'
     ])
     .pipe(concat('app.min.js'))
-    .pipe(uglify())
+
     .pipe(gulp.dest('public'));
 });
 

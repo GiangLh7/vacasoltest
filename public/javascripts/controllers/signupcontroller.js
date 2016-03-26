@@ -35,7 +35,10 @@ angular.module('vacasol').controller('SignupCtrl', ['$scope','$location', '$load
 
     $scope.signup = function() {
         $loading.start('signup');
-        User.signup($scope.user).then(function (response) {
+        setTimeout(function() {
+            $loading.finish('signup');
+        }, 5000);
+       /* User.signup($scope.user).then(function (response) {
             if(response.success) {
                 $location.path('/confirm');
             }
@@ -49,7 +52,7 @@ angular.module('vacasol').controller('SignupCtrl', ['$scope','$location', '$load
             setTimeout(function() {
                 $loading.finish('signup');
             }, 4000);
-        });
+        });*/
     };
     $scope.appendLanguageChip = function(language) {
         if($scope.user.languages.length > 5) {

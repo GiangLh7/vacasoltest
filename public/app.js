@@ -7,19 +7,19 @@ angular.module('vacasol', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngLoading'])
         $locationProvider.html5Mode(true);
 
         $routeProvider.when('/', {
-            templateUrl: "/views/signup.html",
+            templateUrl: "views/signup.html",
             controller: 'HomeCtrl'
         })
         .when('/login', {
-            templateUrl: '/views/login.html',
+            templateUrl: 'views/login.html',
             controller: 'LoginCtrl'
         })
         .when('/signup', {
-            templateUrl: '/views/signup.html',
+            templateUrl: 'views/signup.html',
             controller: 'SignupCtrl'
         })
         .when('/confirm', {
-            templateUrl: '/views/confirm.html',
+            templateUrl: 'views/confirm.html',
             controller: 'ConfirmCtrl'
         })
         .otherwise({
