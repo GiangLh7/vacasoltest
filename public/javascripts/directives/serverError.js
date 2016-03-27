@@ -13,6 +13,7 @@ angular.module('vacasol')
                 element.on('keydown', function() {
                     ctrl.$setValidity('required', true);
                     ctrl.$setValidity('pattern', true);
+                    ctrl.$setValidity('unique', true);
                 });
             }
         }

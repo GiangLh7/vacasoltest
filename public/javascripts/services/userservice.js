@@ -3,6 +3,7 @@
  */
 angular.module('vacasol')
     .service('User', ['$q', '$http', function($q, $http) {
+        //var serviceBase = 'https://vacasoltest.herokuapp.com/api/user/';
         var serviceBase = '/api/user/';
         this.signup = function(user) {
             var d = $q.defer();
