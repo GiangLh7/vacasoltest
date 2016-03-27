@@ -1,52 +1,47 @@
-<div class="row" dw-loading="signup" dw-loading-options="{text: 'Loading...'}">
-    <p ng-show="isProcessing">LOADING</p>
-    <div class="col-lg-12 col-md-9">
-        <div class="center-form panel" >
-            <form name="signupForm" ng-controller="SignupCtrl as ctrl" ng-submit="signup()" style="margin: 24px" ng-disabled="true">
-                <label><h4>Sign-up for an account</h4></label>
-                <md-input-container class="md-block">
-                    <label>First name *</label>
-                    <input required ng-model="user.firstName">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>Last name</label>
-                    <input ng-model="user.lastName">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>Email address *</label>
-                    <input name="userEmail" ng-model="user.email" required type="email" ng-pattern="/^.+@.+\..+$/" wc-unique="{property: 'email'}">
-                    <div ng-messages="signupForm.userEmail.$error" role="alert">
-                        <div ng-message-exp="['required', 'pattern']">
-                            Please enter a valid e-mail address.
-                        </div>
-                    </div>
-                    <div ng-messages="signupForm.userEmail.$error">
-                        <p role="alert" ng-show="signupForm.userEmail.$dirty && signupForm.userEmail.$error.unique">
-                            Email already in use
-                        </p>
-                    </div>
-                </md-input-container>
-                <md-chips ng-model="user.languages" md-autocomplete-snap md-require-match="true" md-max-chips="2"
-                          md-on-add="appendLanguageChip($chip)">
-                    <md-autocomplete
-                            md-no-cache="true"
-                            md-selected-item="ctrl.selectedItem"
-                            md-search-text="ctrl.searchText"
-                            md-items="item in ctrl.languagesSearch(ctrl.searchText)"
-                            md-item-text="item"
-                            placeholder="Languages spoken">
-                        <span md-highlight-text="ctrl.searchText">{{item}}</span>
-                    </md-autocomplete>
-                </md-chips>
-                <div style="margin-top: 48px" class="center-block">
-                    <md-checkbox ng-model="user.isAcceptedTermAndCondition" aria-label="I accept the Terms & Conditions">
-                        I accept the Terms & Conditions
-                    </md-checkbox>
+<div class="container" dw-loading="signup" dw-loading-options="{text: 'Loading...'}">
+   <div class="center-form panel" >
+        <form name="signupForm" ng-controller="SignupCtrl as ctrl" ng-submit="signup()" style="margin: 24px" ng-disabled="true">
+            <label><h4>Sign-up for an account</h4></label>
+            <md-input-container class="md-block">
+                <label>First name *</label>
+                <input required ng-model="user.firstName" server-error>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Last name</label>
+                <input ng-model="user.lastName">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Email address *</label>
+                <input name="userEmail" ng-model="user.email" required type="email" ng-pattern="/^.+@.+\..+$/" wc-unique="{property: 'email'}" server-error>
+                <div ng-messages="signupForm.userEmail.$error" role="alert">
+                    <div ng-message-exp="['required', 'pattern']">Please enter a valid e-mail address.</div>
                 </div>
-                <div>
-                    <md-button ng-disabled="signupForm.$invalid || !user.isAcceptedTermAndCondition || signupForm.userEmail.$error.unique" class="md-raised md-primary" ng-click="signup()">Sign-up</md-button>
+                <div ng-messages="signupForm.userEmail.$error">
+                    <p role="alert" ng-show="signupForm.userEmail.$dirty && signupForm.userEmail.$error.unique">
+                        Email already in use
+                    </p>
                 </div>
-            </form>
-        </div>
+            </md-input-container>
+            <md-chips ng-model="user.languages" md-autocomplete-snap md-require-match="true" md-max-chips="2"
+                      md-on-add="appendLanguageChip($chip)">
+                <md-autocomplete
+                        md-no-cache="true"
+                        md-selected-item="ctrl.selectedItem"
+                        md-search-text="ctrl.searchText"
+                        md-items="item in ctrl.languagesSearch(ctrl.searchText)"
+                        md-item-text="item"
+                        placeholder="Languages spoken">
+                    <span md-highlight-text="ctrl.searchText">{{item}}</span>
+                </md-autocomplete>
+            </md-chips>
+            <div style="margin-top: 48px" class="center-block">
+                <md-checkbox ng-model="user.isAcceptedTermAndCondition" aria-label="I accept the Terms & Conditions">
+                    I accept the Terms & Conditions
+                </md-checkbox>
+            </div>
+            <div>
+                <md-button ng-disabled="signupForm.$invalid || !user.isAcceptedTermAndCondition || signupForm.userEmail.$error.unique" class="md-raised md-primary" ng-click="signup()">Sign-up</md-button>
+            </div>
+        </form>
     </div>
 </div>

@@ -3,8 +3,11 @@
 */
 
 angular.module('vacasol', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngLoading'])
-    .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+    .config(['$locationProvider', '$routeProvider', '$mdThemingProvider', function($locationProvider, $routeProvider, $mdThemingProvider) {
         $locationProvider.html5Mode(true);
+
+        $mdThemingProvider.theme('default')
+            .primaryPalette('teal');
 
         $routeProvider.when('/', {
             templateUrl: "views/signup.html",

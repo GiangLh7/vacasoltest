@@ -14,8 +14,9 @@ angular.module('vacasol').controller('SignupCtrl', ['$scope','$location', '$load
 
     self.isProcessing = false;
     self.languages = ['English', 'Danish', 'Italian', 'Russian', 'Spanish', 'Arabic',
-                    'China', 'Vietnamese','Portugal',
-                    'Japanese', 'French','Korean' ];
+                    'China', 'Vietnamese','Portuguese',
+                    'Japanese', 'French','Korean','Turkish','Polish',
+                    'Swedish','German', 'Thai','Greek' ];
     self.selectedItem = null;
     self.searchText = null;
     self.languagesSearch = languagesSearch;
@@ -35,25 +36,19 @@ angular.module('vacasol').controller('SignupCtrl', ['$scope','$location', '$load
 
     $scope.signup = function() {
         $loading.start('signup');
-        setTimeout(function() {
-            $loading.finish('signup');
-        }, 5000);
-       /* User.signup($scope.user).then(function (response) {
+
+        User.signup($scope.user).then(function (response) {
             if(response.success) {
                 $location.path('/confirm');
-            }
-            else {
-
             }
         }).catch(function(err) {
             console.log(err);
         })
         .finally(function () {
-            setTimeout(function() {
-                $loading.finish('signup');
-            }, 4000);
-        });*/
+             $loading.finish('signup');
+        });
     };
+
     $scope.appendLanguageChip = function(language) {
         if($scope.user.languages.length > 5) {
             $scope.user.languages.pop();
