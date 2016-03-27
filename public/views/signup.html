@@ -19,7 +19,7 @@
 
             <md-input-container class="md-block">
                 <label>Email address</label>
-                <input server-error name="userEmail" type="email" ng-model="user.email" wc-email="{property: 'email'}">
+                <input name="userEmail" type="email" ng-model="user.email" wc-email="{property: 'email'}">
                 <div ng-messages="signupForm.userEmail.$error" md-auto-hide="false">
                     <div ng-message="required">Email is required</div>
                     <div ng-message="pattern">Please enter a valid e-mail address</div>
