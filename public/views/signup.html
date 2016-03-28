@@ -5,8 +5,8 @@
             <label><h4>Sign-up for an account</h4></label>
 
             <md-input-container class="md-block">
-                <label>First name</label>
-                <input required name="firstName" ng-model="user.firstName" focus-me="true">
+                <label>First name *</label>
+                <input required name="firstName" maxlength="60" ng-model="user.firstName" focus-me="true">
                 <div ng-messages="signupForm.firstName.$error" role="alert">
                     <div ng-message="required">First name is required</div>
                 </div>
@@ -14,16 +14,18 @@
 
             <md-input-container class="md-block">
                 <label>Last name</label>
-                <input ng-model="user.lastName" name="lastName">
+                <input ng-model="user.lastName" name="lastName" maxlength="60">
             </md-input-container>
 
             <md-input-container class="md-block">
-                <label>Email address</label>
-                <input server-error name="userEmail" type="email" ng-model="user.email" wc-email="{property: 'email'}" dw-loading="checkemail" dw-loading-options="{text: 'Checking...'}">
-                <div ng-messages="signupForm.userEmail.$error" md-auto-hide="false">
+                <label>Email address *</label>
+                <input name="userEmail" ng-model="user.email" server-error required ng-pattern="/^.+@.+\..+$/" wc-email="{property: 'email'}">
+                <div ng-messages="signupForm.userEmail.$error"  ng-show="signupForm.userEmail.$touched">
                     <div ng-message="required">Email is required</div>
-                    <div ng-message="pattern">Please enter a valid e-mail address</div>
-                    <div ng-message="unique">Email already in use</div>
+                    <div>
+                        <div ng-message="pattern">Please enter a valid e-mail address</div>
+                        <div ng-message="unique">A user already exists with this email address</div>
+                    </div>
                 </div>
             </md-input-container>
 
@@ -46,7 +48,7 @@
                 </md-checkbox>
             </div>
             <div>
-                <md-button ng-disabled="signupForm.$invalid || !user.isAcceptedTermAndCondition || signupForm.userEmail.$error.unique" class="md-raised md-primary" ng-click="signup()">Sign-up</md-button>
+                <md-button ng-disabled="signupForm.$invalid || !user.isAcceptedTermAndCondition" class="md-raised md-primary" ng-click="signup()">Sign-up</md-button>
             </div>
         </form>
        </md-content>
