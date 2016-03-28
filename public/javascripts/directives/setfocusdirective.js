@@ -3,7 +3,6 @@
  */
 angular.module('vacasol').directive('focusMe', ['$parse','$timeout', function($parse, $timeout){
     return {
-        //scope: true,   // optionally create a child scope
         link: function(scope, element, attrs) {
             var model = $parse(attrs.focusMe);
             scope.$watch(model, function(value) {
@@ -13,8 +12,6 @@ angular.module('vacasol').directive('focusMe', ['$parse','$timeout', function($p
                     });
                 }
             });
-            // on blur event:
-
         }
     };
 }]);

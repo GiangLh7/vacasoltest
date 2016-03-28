@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 3/26/2016.
  *
- * Function: reset form validity whenever user starts typing again.
+ * Purpose: reset control validity whenever user starts typing again.
  */
 
 angular.module('vacasol')
