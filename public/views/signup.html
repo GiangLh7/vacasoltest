@@ -6,8 +6,8 @@
 
             <md-input-container class="md-block">
                 <label>First name *</label>
-                <input required name="firstName" maxlength="60" ng-model="user.firstName" focus-me="true">
-                <div ng-messages="signupForm.firstName.$error" role="alert">
+                <input required server-error="" name="firstName" maxlength="60" ng-model="user.firstName" focus-me="true">
+                <div ng-messages="signupForm.firstName.$error" role="alert" ng-show="signupForm.firstName.$touched">
                     <div ng-message="required">First name is required</div>
                 </div>
             </md-input-container>

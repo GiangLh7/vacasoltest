@@ -11,8 +11,6 @@ angular.module('vacasol')
             require: 'ngModel',
             link: function(scope, element, attrs, ctrl) {
                 element.on('keydown', function() {
-                    ctrl.$setValidity('pattern', true);
-                    ctrl.$setValidity('unique', true);
                 });
                 element.on('blur', function() {
                     ctrl.$touched = true;
