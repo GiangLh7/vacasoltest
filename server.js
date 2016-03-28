@@ -54,7 +54,7 @@ app.post('/api/user/signup', function(req, res, next) {
         "template_content": [
           {
             "name": "user_name",
-            "content": user.firstName + ' ' + user.lastName
+            "content": user.firstName + (user.lastName != null? ' ' + user.lastName : '')
           },
           {
             "name": "user_email",
