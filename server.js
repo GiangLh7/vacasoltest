@@ -3,7 +3,7 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-//var cors = require('cors');
+var cors = require('cors');
 var mongoose = require('mongoose');
 var mandrillEmailService = require('./services/Emailservice');
 var User = require('./models/User');
@@ -20,7 +20,7 @@ mongoose.connection.on('error', function() {
 /*----------------setup server---------------------------*/
 var app = express();
 app.set('port', process.env.PORT || 3000);
-//pp.use(cors());
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
