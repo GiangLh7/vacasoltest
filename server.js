@@ -8,13 +8,16 @@ var mongoose = require('mongoose');
 var mandrillEmailService = require('./services/Emailservice');
 var User = require('./models/User');
 
-//connect to the database
+
+/*----------------connect to the database---------------------------*/
 mongoose.connect(process.env.MONGODB || process.env.MONGOLAB_URI || 'localhost');
 mongoose.connection.on('error', function() {
-  console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
+  console.log('MongoDB Connection Error. Please make sure that MongoDB is available.');
   process.exit(1);
 });
 
+
+/*----------------setup server---------------------------*/
 var app = express();
 app.set('port', process.env.PORT || 3000);
 //pp.use(cors());
@@ -25,8 +28,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+/*-----------------------server rest-api-----------------------------------------*/
 /**
- * server rest-api
+ * Sign-up a user
  */
 app.post('/api/user/signup', function(req, res, next) {
   var user = new User({
@@ -81,6 +85,12 @@ app.post('/api/user/signup', function(req, res, next) {
   });
 });
 
+/**
+ * Check unique value based on [property, value] pair
+ * parameters:
+ *      - property: field to check against
+ *      - value: value to check unique
+ */
 app.get('/api/user/checkUnique', function (req, res, next) {
   var prop = req.body.property || req.query.property;
   var val = req.body.value || req.query.value;
@@ -95,9 +105,8 @@ app.get('/api/user/checkUnique', function (req, res, next) {
   });
 });
 
-/**
- * start listening incoming requests
- */
+
+/*---------------------start listening incoming requests---------------------*/
 app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
