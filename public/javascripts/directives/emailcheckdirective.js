@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 3/25/2016.
  */
-angular.module('vacasol').directive('wcEmail', ['User', function(User){
+angular.module('vacasol').directive('wcEmail', ['User','$loading', function(User, $loading){
     return {
         restrict: 'A',
         require: 'ngModel',
@@ -28,6 +28,7 @@ angular.module('vacasol').directive('wcEmail', ['User', function(User){
                     }
                 }
                 if(ngModel.$valid) {
+                    $loading.start('checkemail');
                     User.checkUniqueValue(keyProperty.property, currentValue)
                         .then(function (unique) {
                             //Ensure value that being checked hasn't changed since the Ajax call was made
@@ -37,6 +38,9 @@ angular.module('vacasol').directive('wcEmail', ['User', function(User){
                         }, function () {
                             //Probably want a more robust way to handle an error
                             ngModel.$setValidity('unique', true);
+                        })
+                        .finally(function () {
+                            $loading.finish('checkemail')
                         });
                 }
             });

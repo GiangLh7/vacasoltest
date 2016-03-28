@@ -15,6 +15,7 @@ angular.module('vacasol')
             return d.promise;
         }
         this.checkUniqueValue = function (property, value) {
+
             return $http.get(serviceBase + 'checkUnique?property=' + property + '&value=' + escape(value)).then(
                 function (results) {
                     return results.data.status;
