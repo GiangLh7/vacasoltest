@@ -11,14 +11,7 @@ angular.module('vacasol')
             require: 'ngModel',
             link: function(scope, element, attrs, ctrl) {
                 element.on('keydown', function() {
-                    if(element.val()) {
-                        ctrl.$setValidity('required', true);
-                        ctrl.$setValidity('pattern', true);
-                        ctrl.$setValidity('unique', true);
-                    }
-                    else{
-                        ctrl.$setValidity('required', false);
-                    }
+                    ctrl.$setValidity('required', true);
                 });
             }
         }
