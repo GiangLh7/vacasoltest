@@ -32,12 +32,12 @@ app.post('/api/user/signup', function(req, res, next) {
   var user = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    email: req.body.email.toLowerCase(),
+    email: req.body.email,
     languages: req.body.languages
   });
 
   //check the existence of the email
-  User.findOne({ email: req.body.email.toLowerCase() }, function(err, existingUser) {
+  User.findOne({ email: req.body.email }, function(err, existingUser) {
     //if the email already exists
     if (existingUser) {
       return res.send(409,{success: false, field: 'email', message: 'email already exists'});
@@ -84,7 +84,7 @@ app.post('/api/user/signup', function(req, res, next) {
 app.get('/api/user/checkUnique', function (req, res, next) {
   var prop = req.body.property || req.query.property;
   var val = req.body.value || req.query.value;
-  var queryString = '{"' + prop + '":"' + val.toLowerCase() + '"}';
+  var queryString = '{"' + prop + '":"' + val + '"}';
   var queryObj = JSON.parse(queryString);
   User.findOne(queryObj, function(err, existingUser) {
     //if the email already exists
